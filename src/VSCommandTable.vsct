@@ -7,31 +7,13 @@
   <Include href="VSGlobals.vsct"/>
 
   <Commands package="VsStatus">
-    <Groups>
-      <Group guid="VsStatus" id="MyMenuGroup" priority="0x0600">
-        <Parent guid="VSMainMenu" id="Tools"/>
-      </Group>
-    </Groups>
 
     <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
-    <Buttons>
-      <Button guid="VsStatus" id="MyCommand" priority="0x0100" type="Button">
-        <Parent guid="VsStatus" id="MyMenuGroup" />
-        <Icon guid="ImageCatalogGuid" id="StatusInformation" />
-        <CommandFlag>IconIsMoniker</CommandFlag>
-        <Strings>
-          <ButtonText>My Command</ButtonText>
-          <LocCanonicalName>.VsStatus.MyCommand</LocCanonicalName>
-        </Strings>
-      </Button>
-    </Buttons>
+
   </Commands>
 
   <Symbols>
-    <GuidSymbol name="VsStatus" value="{909fd0f3-b438-4959-8de5-45795e2c549a}">
-      <IDSymbol name="MyMenuGroup" value="0x0001" />
-      <IDSymbol name="MyCommand" value="0x0100" />
-    </GuidSymbol>
+    <GuidSymbol name="VsStatus" value="{909fd0f3-b438-4959-8de5-45795e2c549a}" />
   </Symbols>
 </CommandTable>

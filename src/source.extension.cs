@@ -8,7 +8,7 @@ namespace VsStatus
     internal sealed partial class Vsix
     {
         public const string Id = "VsStatus.0c47f4af-bd3b-42f5-877b-b43bdc80e17d";
-        public const string Name = "VS Status";
+        public const string Name = "VS Service Status";
         public const string Description = @"Shows the Visual Studio Service Status icon at the status bar, making it easy to see if a service you rely on is having issues.";
         public const string Language = "en-US";
         public const string Version = "1.0";

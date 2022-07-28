@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,7 +23,7 @@ namespace VsStatus
             {
                 string json = await client.GetStringAsync(_apiUrl);
                 StatusMessage status = JsonConvert.DeserializeObject<StatusMessage>(json);
-                
+
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                 SetIcon(status);
             }
@@ -59,17 +58,17 @@ namespace VsStatus
             }
 
             _icon.Moniker = GetImageMoniker(severity);
-            _icon.ToolTip = $"Status: {statusShort}\r\n\r\nClick to open Visual Studio services status page.";
+            _icon.ToolTip = $"Status: {statusShort}\r\n\r\nClick to open the Visual Studio Service Status page.";
         }
 
         private static ImageMoniker GetImageMoniker(Severity severity)
         {
             return severity switch
             {
-                Severity.Unhealthy => KnownMonikers.StatusErrorOutline,
-                Severity.Degraded => KnownMonikers.StatusWarningOutline,
-                Severity.Advisory => KnownMonikers.StatusInformationOutline,
-                _ => KnownMonikers.StatusOKOutline,
+                Severity.Unhealthy => KnownMonikers.CloudError,
+                Severity.Degraded => KnownMonikers.CloudWarning,
+                Severity.Advisory => KnownMonikers.CloudStopped,
+                _ => KnownMonikers.CloudOK,
             };
         }
 

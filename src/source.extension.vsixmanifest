@@ -2,7 +2,7 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="VsStatus.0c47f4af-bd3b-42f5-877b-b43bdc80e17d" Version="1.0" Language="en-US" Publisher="Mads Kristensen" />
-        <DisplayName>VS Status</DisplayName>
+        <DisplayName>VS Service Status</DisplayName>
         <Description xml:space="preserve">Shows the Visual Studio Service Status icon at the status bar, making it easy to see if a service you rely on is having issues.</Description>
         <MoreInfo>https://github.com/madskristensen/VsStatus</MoreInfo>
         <License>Resources\LICENSE</License>
