@@ -4,7 +4,7 @@
 
 # VS Status
 
-[![Build](https://github.com/madskristensen/SolutionColors/actions/workflows/build.yaml/badge.svg)](https://github.com/madskristensen/SolutionColors/actions/workflows/build.yaml)
+[![Build](https://github.com/madskristensen/VsStatus/actions/workflows/build.yaml/badge.svg)](https://github.com/madskristensen/VsStatus/actions/workflows/build.yaml)
 
 Download this extension from the [Visual Studio Marketplace][marketplace]
 or get the [CI build][vsixgallery].
@@ -15,7 +15,11 @@ Shows the Visual Studio Service Status icon at the status bar, making it easy to
 
 ![Icon](art/icon.png)
 
+Hovering the icon shows the status in a tooltip.
+
 ![Tooltip](art/tooltip.png)
+
+Clicking the icon will open the [Visual Studio Service Status page](https://status.visualstudio.microsoft.com/) in your default browser.
 
 ## How can I help?
 
