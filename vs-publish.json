@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json.schemastore.org/vsix-publish",
+  "categories": [ "other", "services" ],
+  "identity": {
+    "internalName": "VsStatus",
+    "tags": [ "status", "service" ]
+  },
+  "assetFiles": [
+    {
+      "pathOnDisk": "art/icon.png",
+      "targetPath": "art/icon.png"
+    },
+    {
+      "pathOnDisk": "art/tooltip.png",
+      "targetPath": "art/tooltip.png"
+    }
+  ],
+  "overview": "README.md",
+  "publisher": "MadsKristensen",
+  "repo": "https://github.com/MadsKristensen/VsStatus"
+}
