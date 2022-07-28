@@ -2,7 +2,7 @@
 [vsixgallery]: http://vsixgallery.com/extension/VsStatus.0c47f4af-bd3b-42f5-877b-b43bdc80e17d/
 [repo]: https://github.com/madskristensen/VsStatus
 
-# VS Status
+# VS Service Status
 
 [![Build](https://github.com/madskristensen/VsStatus/actions/workflows/build.yaml/badge.svg)](https://github.com/madskristensen/VsStatus/actions/workflows/build.yaml)
 

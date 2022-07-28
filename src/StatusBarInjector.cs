@@ -19,13 +19,20 @@ namespace VsStatus
 
         public static async Task UpdateStatusAsync()
         {
-            using (HttpClient client = new())
+            try
             {
-                string json = await client.GetStringAsync(_apiUrl);
-                StatusMessage status = JsonConvert.DeserializeObject<StatusMessage>(json);
+                using (HttpClient client = new())
+                {
+                    string json = await client.GetStringAsync(_apiUrl);
+                    StatusMessage status = JsonConvert.DeserializeObject<StatusMessage>(json);
 
-                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                SetIcon(status);
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                    SetIcon(status);
+                }
+            }
+            catch (Exception ex)
+            {
+                await ex.LogAsync();
             }
         }
 
