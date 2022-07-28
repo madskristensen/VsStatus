@@ -27,7 +27,7 @@ namespace VsStatus
                     StatusMessage status = JsonConvert.DeserializeObject<StatusMessage>(json);
 
                     await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    EnsureUI();
+                    await EnsureUIAsync();
                     SetStatus(status);
                 }
             }
@@ -37,22 +37,35 @@ namespace VsStatus
             }
         }
 
-        private static void EnsureUI()
+        private static async Task EnsureUIAsync()
         {
             if (_panel == null)
             {
+                _panel = FindChild(Application.Current.MainWindow, "StatusBarPanel") as Panel;
+
+                if (_panel == null)
+                {
+                    // The start window is being displayed and the status bar hasn't been rendered
+                    await Task.Delay(5000);
+                    await EnsureUIAsync();
+                    return;
+                }
+
                 _icon = new();
-                _icon.PreviewMouseLeftButtonUp += (s, e) => { Process.Start(_statusUrl); };
-                _icon.HorizontalAlignment = HorizontalAlignment.Right;
+                _icon.PreviewMouseLeftButtonUp += (s, e) => { _icon.ContextMenu.IsOpen = true; };
+                _icon.HorizontalAlignment = HorizontalAlignment.Left;
+                _icon.MaxWidth = 16;
 
                 _icon.ContextMenu = new ContextMenu();
                 MenuItem refresh = new() { Header = "Refresh" };
-                refresh.Click += (s, e) => { UpdateStatusAsync().FireAndForget(); };
+                refresh.Click += (s, e) => { _icon.Moniker = KnownMonikers.FTPConnection; UpdateStatusAsync().FireAndForget(); };
                 _icon.ContextMenu.Items.Add(refresh);
 
-                FrameworkElement statusBar = FindChild(Application.Current.MainWindow, "StatusBarContainer") as FrameworkElement;
-                _panel = statusBar?.Parent as Panel;
-                _panel.Children.Add(_icon);
+                MenuItem open = new() { Header = "Open Status Page" };
+                open.Click += (s, e) => { Process.Start(_statusUrl); };
+                _icon.ContextMenu.Items.Add(open);
+                
+                _panel.Children.Insert(5, _icon);
             }            
         }
 
@@ -69,7 +82,7 @@ namespace VsStatus
             }
 
             _icon.Moniker = GetImageMoniker(severity);
-            _icon.ToolTip = $"Status: {statusShort}\r\n\r\nClick to open the Visual Studio Service Status page.";
+            _icon.ToolTip = $"Status: {statusShort}";
         }
 
         private static ImageMoniker GetImageMoniker(Severity severity)
