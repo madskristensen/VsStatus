@@ -17,10 +17,8 @@ namespace VsStatus
     {
         private const double _interval = 30 * 60 * 1000; // 30 minutes
 
-        protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+        protected override Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            await this.RegisterCommandsAsync();
-
             StatusBarInjector.UpdateStatusAsync().FireAndForget();
 
             System.Timers.Timer timer = new(_interval)
@@ -33,6 +31,8 @@ namespace VsStatus
             {
                 StatusBarInjector.UpdateStatusAsync().FireAndForget();
             };
+
+            return base.InitializeAsync(cancellationToken, progress);
         }
     }
 }

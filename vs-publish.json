@@ -13,6 +13,10 @@
     {
       "pathOnDisk": "art/tooltip.png",
       "targetPath": "art/tooltip.png"
+    },
+    {
+      "pathOnDisk": "art/context-menu.png",
+      "targetPath": "art/context-menu.png"
     }
   ],
   "overview": "README.md",

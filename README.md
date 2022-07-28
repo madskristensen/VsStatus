@@ -21,6 +21,10 @@ Hovering the icon shows the status in a tooltip.
 
 Clicking the icon will open the [Visual Studio Service Status page](https://status.visualstudio.microsoft.com/) in your default browser.
 
+To manually refreshing the data, right-click the icon and hit *Refresh*.
+
+![context-menu](art/context-menu.png)
+
 ## How can I help?
 
 If you enjoy using the extension, please give it a ★★★★★ rating on the [Visual Studio Marketplace][marketplace].

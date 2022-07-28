@@ -27,7 +27,8 @@ namespace VsStatus
                     StatusMessage status = JsonConvert.DeserializeObject<StatusMessage>(json);
 
                     await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    SetIcon(status);
+                    EnsureUI();
+                    SetStatus(status);
                 }
             }
             catch (Exception ex)
@@ -36,7 +37,7 @@ namespace VsStatus
             }
         }
 
-        private static void SetIcon(StatusMessage status)
+        private static void EnsureUI()
         {
             if (_panel == null)
             {
@@ -44,12 +45,15 @@ namespace VsStatus
                 _icon.PreviewMouseLeftButtonUp += (s, e) => { Process.Start(_statusUrl); };
                 _icon.HorizontalAlignment = HorizontalAlignment.Right;
 
+                _icon.ContextMenu = new ContextMenu();
+                MenuItem refresh = new() { Header = "Refresh" };
+                refresh.Click += (s, e) => { UpdateStatusAsync().FireAndForget(); };
+                _icon.ContextMenu.Items.Add(refresh);
+
                 FrameworkElement statusBar = FindChild(Application.Current.MainWindow, "StatusBarContainer") as FrameworkElement;
                 _panel = statusBar?.Parent as Panel;
                 _panel.Children.Add(_icon);
-            }
-
-            SetStatus(status);
+            }            
         }
 
         private static void SetStatus(StatusMessage status)
