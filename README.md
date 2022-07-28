@@ -19,9 +19,7 @@ Hovering the icon shows the status in a tooltip.
 
 ![Tooltip](art/tooltip.png)
 
-Clicking the icon will open the [Visual Studio Service Status page](https://status.visualstudio.microsoft.com/) in your default browser.
-
-To manually refreshing the data, right-click the icon and hit *Refresh*.
+Clicking the icon will open a context-menu that gives you an option to refresh, or to open the [Visual Studio Service Status page](https://status.visualstudio.microsoft.com/) in your default browser.
 
 ![context-menu](art/context-menu.png)
 
